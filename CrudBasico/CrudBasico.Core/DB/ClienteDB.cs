@@ -63,9 +63,11 @@ namespace CrudBasico.Core.DB
 					Nome
 				FROM
 					TB_CLIENTE
+				ORDER BY
+					Id
 			";
 			var dataTable = Reads(query);
-			if (dataTable.Rows.Count > 0)
+			if (dataTable != null && dataTable.Rows != null && dataTable.Rows.Count > 0)
 			{
 				foreach (DataRow row in dataTable.Rows)
 				{

@@ -1,0 +1,32 @@
+﻿@model List<CrudBasico.Models.ClienteModel>
+@{
+	ViewBag.Title = "Cliente CRUD Basico";
+}
+@Html.Hidden("urlClienteCreate", Url.Action("Create", "Cliente"))
+<button type="button" id="clienteIncluir" class="btn btn-success">Incluir</button>
+<table class="table">
+	<thead>
+		<tr>
+			<th scope="col">#</th>
+			<th scope="col">Nome</th>
+		</tr>
+	</thead>
+	<tbody>
+		@foreach (var item in Model)
+		{
+			<tr>
+				<th scope="row">@item.Id</th>
+				<td>@item.Nome</td>
+				<td>
+					<button type="button" data-id="@item.Id" class="btn btn-primary clienteEditar">Editar</button>
+					<button type="button" data-id="@item.Id" class="btn btn-info clienteDetalhes">Detalhes</button>
+					<button type="button" data-id="@item.Id" class="btn btn-danger clienteExcluir">Excluir</button>
+				</td>
+			</tr>
+		}
+	</tbody>
+</table>
+
+@section scripts{
+	<script src="~/Scripts/cliente/index.js"></script>
+}

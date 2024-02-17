@@ -1,0 +1,22 @@
+﻿@model CrudBasico.Models.ClienteModel
+
+@{
+	ViewBag.Title = "Edit";
+}
+
+@using (Html.BeginForm())
+{
+	@Html.AntiForgeryToken()
+
+	<div class="form-group">
+		@Html.LabelFor(m => m.Nome, new { @class = "form-label" })
+		@Html.TextBoxFor(m => m.Nome, new { @class = "form-control" })
+	</div>
+	<br>
+	<button type="button" id="clienteVoltar" class="btn btn-warning">Voltar</button>
+	<button type="submit" class="btn btn-primary">Salvar</button>
+}
+
+@section scripts{
+	<script src="~/Scripts/cliente/main.js"></script>
+}

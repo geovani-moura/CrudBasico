@@ -1,4 +1,4 @@
-﻿$(document).ready(function () {
+﻿$(window).on("load", function () {
 
 	//Incluir
 	$("#clienteIncluir").on("click", function () {
@@ -13,7 +13,6 @@
 
 	//Detalhes
 	$(".clienteDetalhes").on("click", function () {
-		debugger;
 		var Id = $(this).data('id');
 		window.location.href = "/Cliente/Details/" + Id
 	});
@@ -24,5 +23,5 @@
 		if (confirm(`Deseja realmente excluir o id: ${Id}?`)) {
 			window.location.href = "/Cliente/Delete/" + Id
 		}
-	});
+	});	
 });

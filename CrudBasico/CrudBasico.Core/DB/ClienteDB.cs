@@ -13,7 +13,7 @@ namespace CrudBasico.Core.DB
 {
 	internal class ClienteDB : BaseDB
 	{
-		public int Inserir(ClienteEntity cliente)
+		internal int Inserir(ClienteEntity cliente)
 		{
 			string query = @"
 				INSERT INTO 
@@ -21,28 +21,28 @@ namespace CrudBasico.Core.DB
 				VALUES 
 					(@Nome)
 			";
-			List<SqlParameter> parameters = new List<SqlParameter> {
+			List<SqlParameter> parametroColecao = new List<SqlParameter> {
 				new SqlParameter("@Nome ", cliente.Nome),
 			};
-
-			return Create(query, parameters);
+			return Create(query, parametroColecao);
 		}
 
-		public ClienteEntity Obter(int Id)
+		internal ClienteEntity Obter(int Id)
 		{
 			ClienteEntity retorno = null;
 			string query = @"
 				SELECT
-					*
+					Id,
+					Nome
 				FROM
 					TB_CLIENTE
 				WHERE
 					Id = @Id
 			";
-			List<SqlParameter> parameters = new List<SqlParameter> {
+			List<SqlParameter> parametroColecao = new List<SqlParameter> {
 				new SqlParameter("@Id ", Id),
 			};
-			var row = Read(query, parameters);
+			var row = Read(query, parametroColecao);
 			if(row != null)
 			{
 				retorno = new ClienteEntity()
@@ -54,17 +54,20 @@ namespace CrudBasico.Core.DB
 			return retorno;
 		}
 
-		public List<ClienteEntity> Listar()
+		internal List<ClienteEntity> Listar()
 		{
 			List<ClienteEntity> retorno = new List<ClienteEntity>();
 			string query = @"
 				SELECT
-					*
+					Id,
+					Nome
 				FROM
 					TB_CLIENTE
+				ORDER BY
+					Id
 			";
 			var dataTable = Reads(query);
-			if (dataTable.Rows.Count > 0)
+			if (dataTable != null && dataTable.Rows != null && dataTable.Rows.Count > 0)
 			{
 				foreach (DataRow row in dataTable.Rows)
 				{
@@ -76,6 +79,35 @@ namespace CrudBasico.Core.DB
 				}
 			}
 			return retorno;
+		}
+
+		internal bool Atualizar(ClienteEntity cliente)
+		{
+			string query = @"
+				UPDATE TB_Cliente
+					SET Nome = @Nome
+				WHERE
+					Id = @Id
+			";
+			List<SqlParameter> parametroColecao = new List<SqlParameter> {
+				new SqlParameter("@Id ", cliente.Id),
+				new SqlParameter("@Nome ", cliente.Nome),
+			};
+			return Update(query, parametroColecao);
+		}
+
+		internal bool Delete(int Id)
+		{
+			string query = @"
+				DELETE FROM 
+					TB_Cliente
+				WHERE
+					Id = @Id
+			";
+			List<SqlParameter> parametroColecao = new List<SqlParameter> {
+				new SqlParameter("@Id ", Id),
+			};
+			return Delete(query, parametroColecao);
 		}
 	}
 }

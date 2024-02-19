@@ -15,12 +15,13 @@ namespace CrudBasico.Core.DB
 
 		public BaseDB(string connectionString = null)
 		{
-			this.connectionString = connectionString ?? ConfigurationManager.ConnectionStrings["Teste123"].ConnectionString; ;
+			this.connectionString = connectionString ?? ConfigurationManager.ConnectionStrings["Teste123"].ConnectionString;
 		}
 
 		public int Create(string query, List<SqlParameter> sqlParameters = null)
 		{
 			var idRetorno = 0;
+			query += " SELECT SCOPE_IDENTITY();";
 			try
 			{
 				using (SqlConnection connection = new SqlConnection(connectionString))
@@ -28,11 +29,14 @@ namespace CrudBasico.Core.DB
 					connection.Open();
 
 					SqlCommand command = new SqlCommand(query, connection);
-					command.Parameters.Add(sqlParameters);
-					command.ExecuteNonQuery();
-
-					// Recuperar o ID do registro inserido
-					command.CommandText = "SELECT SCOPE_IDENTITY()";
+					if (sqlParameters != null)
+					{
+						command.Parameters.Clear();
+						foreach (SqlParameter param in sqlParameters)
+						{
+							command.Parameters.Add(param);
+						}
+					}
 					idRetorno = Convert.ToInt32(command.ExecuteScalar());
 				}
 			}
@@ -46,7 +50,7 @@ namespace CrudBasico.Core.DB
 
 		public DataTable Reads(string query, List<SqlParameter> sqlParameters = null)
 		{
-			DataTable dataTable = null;
+			DataTable dataTable = new DataTable();
 
 			try
 			{
@@ -54,7 +58,14 @@ namespace CrudBasico.Core.DB
 				{
 					connection.Open();
 					SqlCommand command = new SqlCommand(query, connection);
-					command.Parameters.Add(sqlParameters);
+					if (sqlParameters != null)
+					{
+						command.Parameters.Clear();
+						foreach (SqlParameter param in sqlParameters)
+						{
+							command.Parameters.Add(param);
+						}
+					}
 
 					SqlDataAdapter adapter = new SqlDataAdapter(command);
 					adapter.Fill(dataTable);
@@ -70,7 +81,7 @@ namespace CrudBasico.Core.DB
 
 		public DataRow Read(string query, List<SqlParameter> sqlParameters = null)
 		{
-			DataTable dataTable = null;
+			DataTable dataTable = new DataTable();
 			DataRow dataRow = null;
 			try
 			{
@@ -78,7 +89,14 @@ namespace CrudBasico.Core.DB
 				{
 					connection.Open();
 					SqlCommand command = new SqlCommand(query, connection);
-					command.Parameters.Add(sqlParameters);
+					if (sqlParameters != null)
+					{
+						command.Parameters.Clear();
+						foreach (SqlParameter param in sqlParameters)
+						{
+							command.Parameters.Add(param);
+						}
+					}
 
 					SqlDataAdapter adapter = new SqlDataAdapter(command);
 					adapter.Fill(dataTable);
@@ -106,7 +124,14 @@ namespace CrudBasico.Core.DB
 				{
 					connection.Open();
 					SqlCommand command = new SqlCommand(query, connection);
-					command.Parameters.Add(sqlParameters);
+					if (sqlParameters != null)
+					{
+						command.Parameters.Clear();
+						foreach (SqlParameter param in sqlParameters)
+						{
+							command.Parameters.Add(param);
+						}
+					}
 					command.ExecuteNonQuery();
 				}
 				return true;
@@ -126,7 +151,14 @@ namespace CrudBasico.Core.DB
 				{
 					connection.Open();
 					SqlCommand command = new SqlCommand(query, connection);
-					command.Parameters.Add(sqlParameters);
+					if (sqlParameters != null)
+					{
+						command.Parameters.Clear();
+						foreach (SqlParameter param in sqlParameters)
+						{
+							command.Parameters.Add(param);
+						}
+					}
 					command.ExecuteNonQuery();
 				}
 				return true;

@@ -24,4 +24,12 @@
 			window.location.href = "/Cliente/Delete/" + Id
 		}
 	});	
+
+
+	new DataTable('#tabelaCliente', {
+		info: false,
+		ordering: false,
+		paging: false
+	});
+
 });

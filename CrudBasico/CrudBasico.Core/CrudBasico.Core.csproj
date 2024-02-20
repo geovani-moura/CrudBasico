@@ -44,8 +44,11 @@
   <ItemGroup>
     <Compile Include="DB\BaseDB.cs" />
     <Compile Include="DB\ClienteDB.cs" />
+    <Compile Include="DB\LogDB.cs" />
     <Compile Include="Entity\ClienteEntity.cs" />
+    <Compile Include="Entity\LogEntity.cs" />
     <Compile Include="NG\ClienteNG.cs" />
+    <Compile Include="NG\LogNG.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup />

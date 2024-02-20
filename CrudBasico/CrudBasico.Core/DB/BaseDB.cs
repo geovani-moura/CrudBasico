@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CrudBasico.Core.NG;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
@@ -42,7 +43,7 @@ namespace CrudBasico.Core.DB
 			}
 			catch (Exception ex)
 			{
-				//Fazer nada ou guardar um log
+				new LogNG().Inserir(ex.ToString());
 			}
 
 			return idRetorno;
@@ -73,7 +74,7 @@ namespace CrudBasico.Core.DB
 			}
 			catch (Exception ex)
 			{
-				//Fazer nada ou guardar um log
+				new LogNG().Inserir(ex.ToString());
 			}
 
 			return dataTable;
@@ -108,7 +109,7 @@ namespace CrudBasico.Core.DB
 			}
 			catch (Exception ex)
 			{
-				//Fazer nada ou guardar um log
+				new LogNG().Inserir(ex.ToString());
 			}
 
 			return dataRow;
@@ -138,7 +139,7 @@ namespace CrudBasico.Core.DB
 			}
 			catch (Exception ex)
 			{
-				//Fazer nada ou guardar um log
+				new LogNG().Inserir(ex.ToString());
 				return false;
 			}
 		}
@@ -165,7 +166,7 @@ namespace CrudBasico.Core.DB
 			}
 			catch (Exception ex)
 			{
-				//Fazer nada ou guardar um log
+				new LogNG().Inserir(ex.ToString());
 				return false;
 			}
 		}

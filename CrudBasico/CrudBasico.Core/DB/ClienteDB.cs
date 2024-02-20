@@ -13,7 +13,7 @@ namespace CrudBasico.Core.DB
 {
 	internal class ClienteDB : BaseDB
 	{
-		internal int Inserir(ClienteEntity cliente)
+		internal int Inserir(ClienteEntity entity)
 		{
 			string query = @"
 				INSERT INTO 
@@ -22,7 +22,7 @@ namespace CrudBasico.Core.DB
 					(@Nome)
 			";
 			List<SqlParameter> parametroColecao = new List<SqlParameter> {
-				new SqlParameter("@Nome ", cliente.Nome),
+				new SqlParameter("@Nome ", entity.Nome),
 			};
 			return Create(query, parametroColecao);
 		}
@@ -81,7 +81,7 @@ namespace CrudBasico.Core.DB
 			return retorno;
 		}
 
-		internal bool Atualizar(ClienteEntity cliente)
+		internal bool Atualizar(ClienteEntity entity)
 		{
 			string query = @"
 				UPDATE TB_Cliente
@@ -90,8 +90,8 @@ namespace CrudBasico.Core.DB
 					Id = @Id
 			";
 			List<SqlParameter> parametroColecao = new List<SqlParameter> {
-				new SqlParameter("@Id ", cliente.Id),
-				new SqlParameter("@Nome ", cliente.Nome),
+				new SqlParameter("@Id ", entity.Id),
+				new SqlParameter("@Nome ", entity.Nome),
 			};
 			return Update(query, parametroColecao);
 		}

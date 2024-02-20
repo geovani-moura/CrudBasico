@@ -1,6 +1,7 @@
 ﻿using CrudBasico.Core.Entity;
 using CrudBasico.Core.NG;
 using CrudBasico.Models;
+using Microsoft.Ajax.Utilities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -30,13 +31,23 @@ namespace CrudBasico.Controllers
 		// GET: Cliente/Details/5
 		public ActionResult Details(int id)
 		{
-			var clienteEntity = new ClienteNG().Obter(id);
-			var clienteModel = new ClienteModel()
+			try
 			{
-				Id = clienteEntity.Id,
-				Nome = clienteEntity.Nome
-			};
-			return View(clienteModel);
+
+				var clienteEntity = new ClienteNG().Obter(id);
+				var clienteModel = new ClienteModel()
+				{
+					Id = clienteEntity.Id,
+					Nome = clienteEntity.Nome
+				};
+				return View(clienteModel);
+
+			}
+			catch (Exception ex)
+			{
+				new LogNG().Inserir(ex.ToString());
+				return RedirectToAction("Index");
+			}
 		}
 
 		// GET: Cliente/Create
@@ -60,22 +71,31 @@ namespace CrudBasico.Controllers
 				new ClienteNG().Inserir(clienteEntity);
 				return RedirectToAction("Index");
 			}
-			catch
+			catch (Exception ex)
 			{
-				return View();
+				new LogNG().Inserir(ex.ToString());
+				return RedirectToAction("Index");
 			}
 		}
 
 		// GET: Cliente/Edit/5
 		public ActionResult Edit(int id)
 		{
-			var clienteEntity = new ClienteNG().Obter(id);
-			var clienteModel = new ClienteModel()
+			try
 			{
-				Id = clienteEntity.Id,
-				Nome = clienteEntity.Nome
-			};
-			return View(clienteModel);
+				var clienteEntity = new ClienteNG().Obter(id);
+				var clienteModel = new ClienteModel()
+				{
+					Id = clienteEntity.Id,
+					Nome = clienteEntity.Nome
+				};
+				return View(clienteModel);
+			}
+			catch (Exception ex)
+			{
+				new LogNG().Inserir(ex.ToString());
+				return RedirectToAction("Index");
+			}
 		}
 
 		// POST: Cliente/Edit/5
@@ -92,33 +112,27 @@ namespace CrudBasico.Controllers
 				new ClienteNG().Atualizar(clienteEntity);
 				return RedirectToAction("Index");
 			}
-			catch
+			catch (Exception ex)
 			{
-				return View();
+				new LogNG().Inserir(ex.ToString());
+				return RedirectToAction("Index");
 			}
 		}
 
 		// GET: Cliente/Delete/5
 		public ActionResult Delete(int id)
 		{
-			new ClienteNG().Delete(id);
-			return RedirectToAction("Index");
-		}
-
-		// POST: Cliente/Delete/5
-		[HttpPost]
-		public ActionResult Delete(int id, FormCollection collection)
-		{
 			try
 			{
-				// TODO: Add delete logic here
-
+				new ClienteNG().Delete(id);
 				return RedirectToAction("Index");
 			}
-			catch
+			catch (Exception ex)
 			{
-				return View();
+				new LogNG().Inserir(ex.ToString());
+				return RedirectToAction("Index");
 			}
 		}
+
 	}
 }

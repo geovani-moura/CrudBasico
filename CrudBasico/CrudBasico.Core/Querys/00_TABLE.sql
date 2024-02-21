@@ -1,7 +1,7 @@
-CREATE DATABASE TESTE12356
+CREATE DATABASE TESTE123
 GO
 
-USE TESTE12356
+USE TESTE123
 GO
 
 CREATE TABLE TB_Cliente(
@@ -15,3 +15,17 @@ CREATE TABLE TB_LOG(
 	LogText text NOT NULL,
 	LogDate datetime NOT NULL,
 ) 
+GO
+
+USE [master];
+GO
+
+CREATE LOGIN userTeste01
+    WITH PASSWORD    = N'123456',
+    CHECK_POLICY     = OFF,
+    CHECK_EXPIRATION = OFF;
+GO
+
+EXEC sp_addsrvrolemember 
+    @loginame = N'userTeste01', 
+    @rolename = N'sysadmin';

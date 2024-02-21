@@ -53,7 +53,7 @@ namespace CrudBasico.Controllers
 		// GET: Cliente/Create
 		public ActionResult Create()
 		{
-			return View();
+			return View(new ClienteModel());
 		}
 
 		// POST: Cliente/Create

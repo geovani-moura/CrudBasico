@@ -56,7 +56,7 @@ namespace CrudBasico.Core.DB
 
 		internal List<ClienteEntity> Listar()
 		{
-			List<ClienteEntity> retorno = new List<ClienteEntity>();
+			var retorno = new List<ClienteEntity>();
 			string query = @"
 				SELECT
 					Id,

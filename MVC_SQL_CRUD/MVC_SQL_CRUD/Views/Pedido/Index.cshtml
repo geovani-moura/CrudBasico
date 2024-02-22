@@ -1,0 +1,36 @@
+﻿@model List<MVC_SQL_CRUD.Models.PedidoModel>
+@{
+	ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<table class="table">
+	<thead>
+		<tr>
+			<th scope="col">#</th>
+			<th scope="col">Nº Pedido</th>
+		</tr>
+	</thead>
+	<tbody>
+		@foreach (var item in Model)
+		{
+			<tr>
+				<th>@item.Id</th>
+				<th>@item.Numero</th>
+			</tr>
+		}
+	</tbody>
+</table>
+
+<button type="button" id="pedidoIncluir" class="btn btn-success">Criar Pedido</button>
+
+@section scripts{
+	<script>
+		//Incluir
+		$("#pedidoIncluir").on("click", function () {
+			window.location.href = "/Pedido/Create"
+		});
+	</script>
+}
+

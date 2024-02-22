@@ -34,7 +34,7 @@ namespace CrudBasico.Controllers
 			try
 			{
 
-				var clienteEntity = new ClienteNG().Obter(id);
+				var clienteEntity = new ClienteNG().ObterEscondido(id);
 				var clienteModel = new ClienteModel()
 				{
 					Id = clienteEntity.Id,

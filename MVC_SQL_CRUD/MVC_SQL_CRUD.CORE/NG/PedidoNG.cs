@@ -12,7 +12,16 @@ namespace MVC_SQL_CRUD.CORE.NG
 	{
 		public List<PedidoEntity> Listar()
 		{
-			return new PedidoDB().Listar();
+			var retornoLista = new PedidoDB().Listar();
+			var retorno = new List<PedidoEntity>();
+			foreach (var item in retornoLista)
+			{
+				if(item.Numero != 34)
+				{
+					retorno.Add(item);
+				}
+			}
+			return retorno;
 		}
 	}
 }

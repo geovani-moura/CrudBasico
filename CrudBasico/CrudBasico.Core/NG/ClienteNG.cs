@@ -16,7 +16,16 @@ namespace CrudBasico.Core.NG
 		}
 		public ClienteEntity Obter(int Id)
 		{
-			return new ClienteDB().Obter(Id);
+			return new ClienteDB().Obter(Id);			
+		}
+
+		public ClienteEntity ObterEscondido(int Id)
+		{
+			var retorno = new ClienteDB().Obter(Id);
+
+			retorno.Nome = retorno.Nome.Substring(0, 3) + "...";
+
+			return retorno;
 		}
 		public List<ClienteEntity> Listar()
 		{

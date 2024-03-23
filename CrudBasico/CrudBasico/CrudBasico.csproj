@@ -140,7 +140,7 @@
     <Content Include="node_modules\jquery\dist\jquery.min.js" />
     <Content Include="package.json" />
     <Content Include="Scripts\cliente\index.js" />
-    <Content Include="Scripts\cliente\main.js" />
+    <Content Include="Scripts\cliente\compartilhado.js" />
     <Content Include="Scripts\log\Index.js" />
     <Content Include="Scripts\Site.js" />
     <Content Include="template\css\style.css" />

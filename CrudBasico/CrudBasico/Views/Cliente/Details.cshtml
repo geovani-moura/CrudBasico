@@ -18,5 +18,11 @@
 
 
 @section scripts{
-	<script src="~/Scripts/cliente/main.js"></script>
+	<script>
+		$(document).ready(function () {
+			$("#clienteVoltar").on("click", function () {
+				window.location.href = "/Cliente/Index/"
+			});
+		});
+	</script>
 }

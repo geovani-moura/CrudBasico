@@ -15,8 +15,10 @@ namespace CrudBasico.Controllers
 		// GET: Cliente
 		public ActionResult Index()
 		{
-			var clienteEntityColecao = new ClienteNG().Listar();
-			var clienteModelColecao = new List<ClienteModel>();
+			var clienteNG = new ClienteNG();
+			var clienteEntityColecao = clienteNG.Listar();
+
+            var clienteModelColecao = new List<ClienteModel>();
 			foreach (var item in clienteEntityColecao)
 			{
 				clienteModelColecao.Add(new ClienteModel()

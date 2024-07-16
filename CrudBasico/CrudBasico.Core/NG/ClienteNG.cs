@@ -12,32 +12,40 @@ namespace CrudBasico.Core.NG
 	{
 		public int Inserir(ClienteEntity cliente)
 		{
-			return new ClienteDB().Inserir(cliente);
+			var clienteDB = new ClienteDB();
+            var retorno = clienteDB.Inserir(cliente);
+			return retorno;
 		}
 		public ClienteEntity Obter(int Id)
 		{
-			return new ClienteDB().Obter(Id);			
+            var clienteDB = new ClienteDB();
+            var retorno = clienteDB.Obter(Id);		
+			return retorno;
 		}
 
 		public ClienteEntity ObterEscondido(int Id)
 		{
-			var retorno = new ClienteDB().Obter(Id);
-
-			retorno.Nome = retorno.Nome.Substring(0, 3) + "...";
-
+            var clienteDB = new ClienteDB();
+            var retorno = clienteDB.Obter(Id);
 			return retorno;
 		}
 		public List<ClienteEntity> Listar()
 		{
-			return new ClienteDB().Listar();
+            var clienteDB = new ClienteDB();
+            var retornoColecao = clienteDB.Listar();
+			return retornoColecao;
 		}
 		public bool Atualizar(ClienteEntity cliente)
 		{
-			return new ClienteDB().Atualizar(cliente);
+            var clienteDB = new ClienteDB();
+            var retorno = clienteDB.Atualizar(cliente);
+			return retorno;
 		}
 		public bool Delete(int Id)
 		{
-			return new ClienteDB().Delete(Id);
+            var clienteDB = new ClienteDB();
+            var retorno = clienteDB.Delete(Id);
+			return retorno;
 		}
 	}
 }

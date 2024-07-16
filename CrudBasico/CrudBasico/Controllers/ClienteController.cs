@@ -36,7 +36,8 @@ namespace CrudBasico.Controllers
 			try
 			{
 
-				var clienteEntity = new ClienteNG().ObterEscondido(id);
+                var clienteNG = new ClienteNG();
+                var clienteEntity = clienteNG.ObterEscondido(id);
 				var clienteModel = new ClienteModel()
 				{
 					Id = clienteEntity.Id,
@@ -47,7 +48,8 @@ namespace CrudBasico.Controllers
 			}
 			catch (Exception ex)
 			{
-				new LogNG().Inserir(ex.ToString());
+                var logNG = new LogNG();
+                logNG.Inserir(ex.ToString());
 				return RedirectToAction("Index");
 			}
 		}
@@ -55,7 +57,8 @@ namespace CrudBasico.Controllers
 		// GET: Cliente/Create
 		public ActionResult Create()
 		{
-			return View(new ClienteModel());
+			var model = new ClienteModel();
+			return View(model);
 		}
 
 		// POST: Cliente/Create
@@ -70,12 +73,14 @@ namespace CrudBasico.Controllers
 					Id = clienteModel.Id,
 					Nome = clienteModel.Nome
 				};
-				new ClienteNG().Inserir(clienteEntity);
+                var clienteNG = new ClienteNG();
+                clienteNG.Inserir(clienteEntity);
 				return RedirectToAction("Index");
 			}
 			catch (Exception ex)
 			{
-				new LogNG().Inserir(ex.ToString());
+                var logNG = new LogNG();
+                logNG.Inserir(ex.ToString());
 				return RedirectToAction("Index");
 			}
 		}
@@ -85,7 +90,8 @@ namespace CrudBasico.Controllers
 		{
 			try
 			{
-				var clienteEntity = new ClienteNG().Obter(id);
+                var clienteNG = new ClienteNG();
+                var clienteEntity = clienteNG.Obter(id);
 				var clienteModel = new ClienteModel()
 				{
 					Id = clienteEntity.Id,
@@ -95,7 +101,8 @@ namespace CrudBasico.Controllers
 			}
 			catch (Exception ex)
 			{
-				new LogNG().Inserir(ex.ToString());
+                var logNG = new LogNG();
+                logNG.Inserir(ex.ToString());
 				return RedirectToAction("Index");
 			}
 		}
@@ -111,12 +118,14 @@ namespace CrudBasico.Controllers
 					Id = clienteModel.Id,
 					Nome = clienteModel.Nome
 				};
-				new ClienteNG().Atualizar(clienteEntity);
+                var clienteNG = new ClienteNG();
+                clienteNG.Atualizar(clienteEntity);
 				return RedirectToAction("Index");
 			}
 			catch (Exception ex)
 			{
-				new LogNG().Inserir(ex.ToString());
+                var logNG = new LogNG();
+                logNG.Inserir(ex.ToString());
 				return RedirectToAction("Index");
 			}
 		}
@@ -126,12 +135,14 @@ namespace CrudBasico.Controllers
 		{
 			try
 			{
-				new ClienteNG().Delete(id);
+                var clienteNG = new ClienteNG();
+                clienteNG.Delete(id);
 				return RedirectToAction("Index");
 			}
 			catch (Exception ex)
 			{
-				new LogNG().Inserir(ex.ToString());
+				var logNG = new LogNG();
+                logNG.Inserir(ex.ToString());
 				return RedirectToAction("Index");
 			}
 		}
